@@ -1,0 +1,130 @@
+<?php
+/**
+ *  Implements hook_menu
+ */
+function my_forms_menu() {
+         $items = array();
+         $items['my_forms'] = array(
+              'title'           => 'Contacts',
+              'page callback'   => 'drupal_get_form',
+              'page arguments'  => array('my_forms_form'),
+              'access callback' => TRUE,
+           );
+     return $items;
+}
+
+/**
+ *  Implements my_forms_form
+ */
+
+function my_forms_form($form, $form_state) {
+       $form = array();
+       $form['firstname'] = array(
+                             '#type'  => 'textfield',
+                             '#title' => t('Name'),
+                             '#size'  => 20,
+                         );
+       $form['surname'] = array(
+                                '#type'  => 'textfield',
+                                '#title' => t('Surname'),
+                                '#size'  => 30,
+                         );
+       $form['nickname'] = array(
+                                 '#type'  => 'textfield',
+                                 '#title' => t('Nickname'),
+                                 '#size'  => 20,
+                                 '#required' => TRUE,
+                         );
+       $form['email'] = array(
+                                 '#type'  => 'textfield',
+                                 '#title' => t('Email'),
+                                 '#size'  => 20,
+                                 '#required' => TRUE,
+                         );
+       $form['phone_number'] = array(
+                                 '#type'  => 'textfield',
+                                 '#title' => t('Phone number'),
+                                 '#size'  => 20,
+                         );
+        $form['sex'] = array(
+                                 '#type'     => 'radios',
+                                 '#title'    => t('Sex'),
+                                 '#options'  => array(
+                                                      'Male' => t('Male'),
+                                                      'Female' => t('Female'),
+                                                     ),     
+                         );
+         $form['country'] = array(
+                                 '#type'    => 'select',
+                                 '#title'   => t('Country'),
+                                 '#options' => array(
+                                                    'Ukraine' => t('Ukraine'),
+                                                    'USA' =>  t('USA'),
+                                                    'Russia' => t('Russia'),
+                                                ),
+                                 ); 
+         $form['message'] = array(
+                                 '#type'  => 'textarea',
+                                 '#title' => t('Message'),
+                                 '#required' => TRUE,
+                                 ); 
+         $form['accept'] = array(
+                                 '#type'  => 'checkbox',
+                                 '#title' => t('I have read and accept'),
+                                 '#required' => TRUE, 
+                         );
+         $form['rules'] = array(
+                              '#type' => 'fieldset',
+                              '#title' => t('Our rules'),
+                              '#collapsible' => TRUE, 
+                              '#collapsed' => TRUE,       
+                      );  
+         $form['rules']['text'] = array(
+                                        '#type' => 'textarea',
+                                        '#value' => t('
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet tempor justo, eget auctor felis. Nulla et est sed ligula commodo interdum a nec arcu. Pellentesque tempus scelerisque sem id dapibus. Aenean dignissim felis ac lorem porttitor, ut blandit sapien efficitur. Cras id libero ac purus feugiat aliquam non et libero. Suspendisse sit amet efficitur odio, vitae bibendum est. Integer arcu neque, rutrum et lectus sit amet, aliquam ultrices massa. Nullam venenatis nisi nec porttitor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi ultrices ligula sit amet accumsan interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin a lacinia ante. Nunc dictum, dolor in eleifend eleifend, augue sem laoreet velit, et ornare dui mi at ante. Aliquam non risus malesuada, placerat lacus in, interdum mauris. Integer luctus est quis interdum egestas. Aliquam a dui congue, bibendum nisl cursus, mollis.
+'),
+                                   );
+        $form['submit'] = array(
+                                '#type'  => 'submit',
+                                '#value' => t('Send') 
+                               );      
+     return $form;      
+}  
+/**
+ *  Validate function for my_forms
+ */
+function my_forms_form_validate($form, &$form_state) {
+      if (!valid_email_address($form_state['values']['email'])) {
+    form_set_error('email', t('Please Enter a valid email address.'));
+  }
+ if (!preg_match('/^[0-9]{1,3}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}$/', $form_state['values']['phone_number'])) {
+    form_set_error('phone_number', t('Please Enter a valid phone number'));
+  }
+}
+ 
+/**
+ *  Submit function for my_forms
+ */
+function my_forms_form_submit($form, &$form_state) {
+drupal_set_message(t($form_state['values']['firstname']) . '<br>' . ($form_state['values']['surname']). '<br>' . ($form_state['values']['nickname']) . '<br>' . ($form_state['values']['email']) . '<br>' . ($form_state['values']['phone_number']) . '<br>' . ($form_state['values']['sex']) . '<br>' . ($form_state[t('values')]['country']) . '<br>' . ($form_state['values']['message']));
+                          
+}
+
+function my_forms_form_alter($form, &$form_state, $form_id) {
+drupal_set_message($form_id);
+/**switch (form_id) {
+  case 'my_forms_form':{
+    dpm($form);
+    $form['#submit'][]='my_submit';
+    break;
+    }
+  }
+}
+function my_submit(&$form, &$form_state) {
+  drupal_set_message(t($form_state['values']['firstname']));
+ */
+}                         
+
+
+

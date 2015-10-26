@@ -1,0 +1,19 @@
+<?php
+/**
+ * Implements hook_menu_page404
+*/
+function page404_menu() {
+               $items = array();
+               $items['Page404'] = array(
+                  'title'           => 'Page 404',
+                  'page callback'   => 'page404', 
+                  'access callback' => TRUE
+              );
+return $items;                
+}
+/**
+ * Implements function page404
+*/
+function page404() {
+                return t('Error. Page not found');
+}

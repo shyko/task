@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_permission
+ */
+ 
+function my_permission_permission() {
+           return array(
+                       'administer my module' => array(
+                        'title' => t('Administer my module'),
+                        'description' => ('Perform administration task for my module.'),  
+                          ),
+       );
+}

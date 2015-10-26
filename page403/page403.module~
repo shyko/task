@@ -1,0 +1,21 @@
+<?php
+/**
+ * Implements hook_menu  
+*/
+function page403_menu() {
+         $items = array();  
+         $items['page403'] = array(
+                 'title'           => 'Page 403',
+                 'page callback'   => 'page403',  
+                 'access callback' => TRUE, 
+                        );
+         return $items;
+}
+/**
+ * Function page403  
+*/
+function page403() {
+     return t('Sorry, access denied');
+} 
+
+

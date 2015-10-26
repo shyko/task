@@ -1,0 +1,126 @@
+<?php
+/**
+ * Implements hook_menu  
+*/
+function my_theming_menu() {
+         $items = array();  
+         $items['my_theming'] = array(
+                                       'title'           => 'My theming',
+                                       'page callback'   => 'my_theme',  
+                                       'access callback' => TRUE, 
+                                     );
+         return $items;
+}
+
+/**
+ * Function theme_item_list  
+*/
+function my_theme() {
+$items       = array('item 1', 'item 2', 'item 3', 'item 4');       
+$title       = 'Theme Item List Example';                 
+$type        = 'ul';                                      
+$attributes  = array(                                
+'class'      => 'newclass',
+);
+$list_item = theme_item_list(array('items' => $items, 'title' => $title, 'type' => $type, 'attributes' => $attributes));;
+/**
+ * Function theme_table
+ */
+$colgroup = array(
+  array(
+    array(
+          'class' => array('funky'),
+          'align' => 'center',
+    ),
+  ),
+);
+ 
+$variables = array(
+                   'header' => array(                                     
+                                     0 => 'Title',
+                                      1 => 'Description',
+                                    ),
+                   'rows'   => array(                                          
+                                     0 => array('Row Title 1', 'Row Description 1'),
+                                     1 => array(
+                                                'data' => array(
+                                                                0 => 'Row Title 2',
+                                                                1 => array(
+                                                                           'data' => 'Row  Description 2',
+                                                                           'class' => array('newrow'),                       
+        ),
+      ),
+    ),
+  ),
+                   'attributes' => array(
+                                         'class' => array('newtable'),                         
+  ),
+                   'caption' => 'Example table',                            
+                   'colgroups' => $colgroup,                               
+                   'sticky' => FALSE,                                     
+                   'empty' => 'Table is empty',                              
+);
+$theme_table = theme_table($variables);
+/*
+ *  Function theme_fieldset
+ */
+drupal_add_library('system', 'drupal.collapse');
+$fieldset_list_item = array(
+                       '#title'         => t('Example for theme_item_list '),
+                       '#children'      => t('') . $list_item, 
+	               '#collapsible'   => true, 
+	               '#collapsed'     => true, 
+	               '#attributes'    => array( 
+	                                        'class' => array('collapsible', 'collapsed')
+	                                              ), 
+	                      ); 
+$fieldset_l_i = theme('fieldset', array('element' => $fieldset_list_item));
+
+$theme_table_fieldset = array( 
+	                '#title'           => t('Example for theme_table'),
+                        '#children'        => t('') . $theme_table,  
+	                '#collapsible'     => true, 
+	                '#collapsed'       => true, 
+                        '#attributes'      => array( 
+	                                           'class' => array('collapsible',           'collapsed')
+	                                              ), 
+	                      ); 
+$fieldset_table = theme('fieldset', array('element' => $theme_table_fieldset));
+/**
+ * Implements theme_image_style
+ */
+$theme_image = theme_image_style(array(
+                                       'style_name' => 'medium',
+                                       'width'      => '',
+                                       'height'     => '',
+                                       'alt'        => 'must be a picture', 
+                                       'path'       => 'public://333.jpg',
+                                       )
+                                );
+                      
+return $fieldset_l_i . $fieldset_table . t('<h2>Example for theme_image_style<br></h2>') .  $theme_image . '<br>' . theme('custom_theme', array('body' => 'Some body', 'title' => 'Output text by theme function')) . theme('custom_template', array());
+}
+
+function my_theming_theme() {
+          return array(
+    'custom_theme' => array( 
+      'variables' => array( 
+        'body' => NULL,
+        'title' => NULL,
+      ),
+    ),
+    'custom_template' => array('template' => 'custom-page'),
+  );
+}
+function theme_custom_theme($variables) {
+  $output = '<div class="custom-template-wrapper">';
+  $output .=    '<div class="title" align="center"><h2><strong>';
+  $output .=      $variables['title'];
+  $output .=    '</strong></h2></div>';
+  $output .=    '<div class="body" align="center"><h2><strong>';
+  $output .=      $variables['body'];
+  $output .=    '</strong></h2></div>';
+  $output .= '</div>';
+  return $output;
+}
+

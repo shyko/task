@@ -1,0 +1,4 @@
+name = My permission
+description = my permission
+version = 7.x-dev
+core = 7.x
