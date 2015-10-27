@@ -30,15 +30,15 @@ function my_forms_form($form, $form_state) {
                                 '#size'  => 30,
                          );
        $form['nickname'] = array(
-                                 '#type'  => 'textfield',
-                                 '#title' => t('Nickname'),
-                                 '#size'  => 20,
+                                 '#type'     => 'textfield',
+                                 '#title'    => t('Nickname'),
+                                 '#size'     => 20,
                                  '#required' => TRUE,
                          );
        $form['email'] = array(
-                                 '#type'  => 'textfield',
-                                 '#title' => t('Email'),
-                                 '#size'  => 20,
+                                 '#type'     => 'textfield',
+                                 '#title'    => t('Email'),
+                                 '#size'     => 20,
                                  '#required' => TRUE,
                          );
        $form['phone_number'] = array(
@@ -64,23 +64,23 @@ function my_forms_form($form, $form_state) {
                                                 ),
                                  ); 
          $form['message'] = array(
-                                 '#type'  => 'textarea',
-                                 '#title' => t('Message'),
+                                 '#type'     => 'textarea',
+                                 '#title'    => t('Message'),
                                  '#required' => TRUE,
                                  ); 
          $form['accept'] = array(
-                                 '#type'  => 'checkbox',
-                                 '#title' => t('I have read and accept'),
+                                 '#type'     => 'checkbox',
+                                 '#title'    => t('I have read and accept'),
                                  '#required' => TRUE, 
                          );
          $form['rules'] = array(
-                              '#type' => 'fieldset',
-                              '#title' => t('Our rules'),
+                              '#type'        => 'fieldset',
+                              '#title'       => t('Our rules'),
                               '#collapsible' => TRUE, 
-                              '#collapsed' => TRUE,       
+                              '#collapsed'   => TRUE,       
                       );  
          $form['rules']['text'] = array(
-                                        '#type' => 'textarea',
+                                        '#type'  => 'textarea',
                                         '#value' => t('
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet tempor justo, eget auctor felis. Nulla et est sed ligula commodo interdum a nec arcu. Pellentesque tempus scelerisque sem id dapibus. Aenean dignissim felis ac lorem porttitor, ut blandit sapien efficitur. Cras id libero ac purus feugiat aliquam non et libero. Suspendisse sit amet efficitur odio, vitae bibendum est. Integer arcu neque, rutrum et lectus sit amet, aliquam ultrices massa. Nullam venenatis nisi nec porttitor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi ultrices ligula sit amet accumsan interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin a lacinia ante. Nunc dictum, dolor in eleifend eleifend, augue sem laoreet velit, et ornare dui mi at ante. Aliquam non risus malesuada, placerat lacus in, interdum mauris. Integer luctus est quis interdum egestas. Aliquam a dui congue, bibendum nisl cursus, mollis.
 '),

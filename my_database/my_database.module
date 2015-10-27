@@ -41,28 +41,28 @@ $items['my_database/%/delete'] = array(
 function my_database_insert_form($form, $form_state) {
   $form = array();
   $form['number'] = array(
-    '#title' => t('Number'),
-    '#type' => 'textfield',
-    '#size' => 20,
-    '#maxlength' => 10,
+    '#title'       => t('Number'),
+    '#type'        => 'textfield',
+    '#size'        => 20,
+    '#maxlength'   => 10,
     '#description' => t('Only numbers'),
-    '#required' => TRUE,
+    '#required'    => TRUE,
   );
   $form['teaser'] = array(
-    '#title' => t('Teaser'),
-    '#type' => 'textfield',
-    '#size' =>  50,
+    '#title'     => t('Teaser'),
+    '#type'      => 'textfield',
+    '#size'      =>  50,
     '#maxlength' => 50,
-    '#required' => TRUE,
+    '#required'  => TRUE,
   );
   $form['text'] = array(
-    '#title' => t('Text'),
-    '#type' => 'textarea',
+    '#title'    => t('Text'),
+    '#type'     => 'textarea',
     '#required' => TRUE,
   );
   $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Submit'),
+    '#type'   => 'submit',
+    '#value'  => t('Submit'),
   );
   return $form;
 }
